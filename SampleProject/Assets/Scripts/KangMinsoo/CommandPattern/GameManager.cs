@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public Unit unit = null;
     List<CommandPattern> commandList = new List<CommandPattern>();
     int currentMoveIndex = 0;
+    int maxMoveIndex = 0;
 
 
     // Update is called once per frame
@@ -19,29 +20,46 @@ public class GameManager : MonoBehaviour
                 commandList.Add(new MoveUnitCommand(unit, unit.posX - 1, unit.posY));
                 commandList[currentMoveIndex].executeAction(unit.posX - 1, unit.posY);
                 ++currentMoveIndex;
+                maxMoveIndex = commandList.Count;
             }
             else if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 commandList.Add(new MoveUnitCommand(unit, unit.posX, unit.posY + 1));
                 commandList[currentMoveIndex].executeAction(unit.posX, unit.posY + 1);
                 ++currentMoveIndex;
+                maxMoveIndex = commandList.Count;
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 commandList.Add(new MoveUnitCommand(unit, unit.posX + 1, unit.posY));
                 commandList[currentMoveIndex].executeAction(unit.posX + 1, unit.posY);
                 ++currentMoveIndex;
+                maxMoveIndex = commandList.Count;
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 commandList.Add(new MoveUnitCommand(unit, unit.posX, unit.posY - 1));
                 commandList[currentMoveIndex].executeAction(unit.posX, unit.posY - 1);
                 ++currentMoveIndex;
+                maxMoveIndex = commandList.Count;
             }
             else if (Input.GetKeyDown(KeyCode.Z))
             {
-                var moveUnit = commandList[--currentMoveIndex] as MoveUnitCommand;
-                unit.MoveTo(moveUnit.undoX, moveUnit.undoY);
+                Debug.Log(currentMoveIndex);
+                if (currentMoveIndex > 0)
+                {
+                    var moveUnit = commandList[--currentMoveIndex] as MoveUnitCommand;
+                    unit.MoveTo(moveUnit.undoX, moveUnit.undoY);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.R))
+            {
+                Debug.Log(currentMoveIndex);
+                if (currentMoveIndex < commandList.Count)
+                {
+                    var moveUnit = commandList[currentMoveIndex++] as MoveUnitCommand;
+                    unit.MoveTo(moveUnit.undoX, moveUnit.undoY);
+                }
             }
         }
     }

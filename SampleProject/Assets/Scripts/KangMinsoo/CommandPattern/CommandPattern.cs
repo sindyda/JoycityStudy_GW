@@ -25,6 +25,7 @@ public class MoveUnitCommand : CommandPattern
 
     public override void executeAction(int _x, int _y)
     {
+        Debug.Log("SaveXY : " + _x + "," + _y);
         undoX = unit.posX;
         undoY = unit.posY;
         unit.MoveTo(x, y);
