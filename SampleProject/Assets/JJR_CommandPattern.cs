@@ -18,6 +18,7 @@ public class MoveCommand : Command
 {
     Vector3 addPosition;
     Vector3 befPosition;
+    Vector3 afterPosition;
 
     public MoveCommand(Vector3 addPosition)
     {
@@ -36,6 +37,7 @@ public class MoveCommand : Command
         befPosition = obj.transform.position;
 
         obj.transform.position += addPosition;
+        afterPosition = obj.transform.position;
     }
 
     public override void Undo()
@@ -57,7 +59,7 @@ public class MoveCommand : Command
         }
 
         base.Undo();
-        commandObject.transform.position += addPosition;
+        commandObject.transform.position = afterPosition;
     }
 }
 
@@ -65,6 +67,7 @@ public class ScaleCommand : Command
 {
     Vector3 addScale;
     Vector3 befScale;
+    Vector3 afterScale;
 
     public ScaleCommand(Vector3 addScale)
     {
@@ -83,6 +86,8 @@ public class ScaleCommand : Command
         befScale = obj.transform.localScale;
 
         obj.transform.localScale += addScale;
+
+        afterScale = obj.transform.localScale;
     }
 
     public override void Undo()
@@ -104,7 +109,7 @@ public class ScaleCommand : Command
         }
 
         base.Undo();
-        commandObject.transform.localScale += addScale;
+        commandObject.transform.localScale = afterScale;
     }
 }
 
@@ -144,29 +149,19 @@ public class JJR_CommandPattern : MonoBehaviour
                 var command = commands[cursorIndex];
                 if (command != null)
                 {
-                    int befCursorIndex = cursorIndex;
-                    MoveCursorIndex(-1);
-
-                    if (befCursorIndex != cursorIndex)
-                    {
-                        command.Undo();
-                    }
+                    command.Undo();
                 }
+                MoveCursorIndex(-1);
             }
         }
         else if (Input.GetKeyDown(KeyCode.R))
         {
             if (cursorIndex >= 0 && cursorIndex < commands.Count)
             {
+                MoveCursorIndex(1);
                 var command = commands[cursorIndex];
                 {
-                    int befCursorIndex = cursorIndex;
-                    MoveCursorIndex(1);
-
-                    if (befCursorIndex != cursorIndex)
-                    {
-                        command.Redo();
-                    }
+                    command.Redo();
                 }
             }
         }
@@ -188,14 +183,18 @@ public class JJR_CommandPattern : MonoBehaviour
 
     Command handleInput()
     {
-        int random = UnityEngine.Random.Range(0, 2);
-        if (random == 0)
+        int random = UnityEngine.Random.Range(0, 4);
+
+        switch (random)
         {
-            return new MoveCommand(new Vector3(0, 1, 0));
-        }
-        else if (random == 1)
-        {
-            return new ScaleCommand(new Vector3(0.1f, 0.1f, 0.1f));
+            case 0:
+                return new MoveCommand(new Vector3(0, 1, 0));
+            case 1:
+                return new MoveCommand(new Vector3(0, -1, 0));
+            case 2:
+                return new ScaleCommand(new Vector3(0.1f, 0.1f, 0.1f));
+            case 3:
+                return new ScaleCommand(new Vector3(-0.1f, -0.1f, -0.1f));
         }
 
         return null;
