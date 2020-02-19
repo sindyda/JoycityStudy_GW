@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CommandPattern
 {
-    public virtual void executeAction(int x, int y)
+    public virtual void executeAction()
     {
     }
 }
@@ -23,9 +23,9 @@ public class MoveUnitCommand : CommandPattern
         unit = _unit;
     }
 
-    public override void executeAction(int _x, int _y)
+    public override void executeAction()
     {
-        Debug.Log("SaveXY : " + _x + "," + _y);
+        
         undoX = unit.posX;
         undoY = unit.posY;
         unit.MoveTo(x, y);

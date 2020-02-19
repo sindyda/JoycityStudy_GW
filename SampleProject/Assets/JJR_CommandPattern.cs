@@ -117,11 +117,6 @@ public class JJR_CommandPattern : MonoBehaviour
 {
     int cursorIndex = -1;
     List<Command> commands = new List<Command>();
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()

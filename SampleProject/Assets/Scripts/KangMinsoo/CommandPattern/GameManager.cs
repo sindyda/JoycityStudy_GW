@@ -18,28 +18,28 @@ public class GameManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 commandList.Add(new MoveUnitCommand(unit, unit.posX - 1, unit.posY));
-                commandList[currentMoveIndex].executeAction(unit.posX - 1, unit.posY);
+                commandList[currentMoveIndex].executeAction();
                 ++currentMoveIndex;
                 maxMoveIndex = commandList.Count;
             }
             else if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 commandList.Add(new MoveUnitCommand(unit, unit.posX, unit.posY + 1));
-                commandList[currentMoveIndex].executeAction(unit.posX, unit.posY + 1);
+                commandList[currentMoveIndex].executeAction();
                 ++currentMoveIndex;
                 maxMoveIndex = commandList.Count;
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 commandList.Add(new MoveUnitCommand(unit, unit.posX + 1, unit.posY));
-                commandList[currentMoveIndex].executeAction(unit.posX + 1, unit.posY);
+                commandList[currentMoveIndex].executeAction();
                 ++currentMoveIndex;
                 maxMoveIndex = commandList.Count;
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 commandList.Add(new MoveUnitCommand(unit, unit.posX, unit.posY - 1));
-                commandList[currentMoveIndex].executeAction(unit.posX, unit.posY - 1);
+                commandList[currentMoveIndex].executeAction();
                 ++currentMoveIndex;
                 maxMoveIndex = commandList.Count;
             }
