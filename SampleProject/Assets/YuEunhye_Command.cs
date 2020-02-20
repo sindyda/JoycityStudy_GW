@@ -109,10 +109,10 @@ public class YuEunhye_Command : MonoBehaviour
     public class MoveUnitCommand : Command
     {
         private Unit _unit = null;
-        public int _x = 0;
-        public int _y = 0;
-        public int _beforeX = 0;
-        public int _beforeY = 0;
+        private int _x = 0;
+        private int _y = 0;
+        private int _xBefore = 0;
+        private int _yBefore = 0;
 
         public MoveUnitCommand() { }
         public MoveUnitCommand(Unit unit, int x, int y)
@@ -125,18 +125,25 @@ public class YuEunhye_Command : MonoBehaviour
         {
             if (_unit == null)
                 return;
-            _beforeX = _unit._x;
-            _beforeY = _unit._y;
 
-            _unit.MoveTo(_x, _y);
+            _xBefore = _unit._x;
+            _yBefore = _unit._y;
+
+            _unit.MoveTo(_x,_y);
         }
-
         public override void Undo()
         {
             if (_unit == null)
                 return;
 
-            _unit.MoveTo(_beforeX, _beforeY);
+            _unit.MoveTo(_xBefore, _yBefore);
+        }
+        public override void Redo()
+        {
+            if (_unit == null)
+                return;
+
+            _unit.MoveTo(_x, _y);
         }
     }
     #endregion Command
@@ -148,23 +155,19 @@ public class YuEunhye_Command : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                int destY = unit._y + 1;
-                return new MoveUnitCommand(unit, unit._x, destY);
+                return new MoveUnitCommand(unit, unit._x, unit._y + 1);
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                int destY = unit._y - 1;
-                return new MoveUnitCommand(unit, unit._x, destY);
+                return new MoveUnitCommand(unit, unit._x, unit._y - 1);
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                int destX = unit._x + 1;
-                return new MoveUnitCommand(unit, destX, unit._y);
+                return new MoveUnitCommand(unit, unit._x + 1, unit._y);
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                int destX = unit._x - 1;
-                return new MoveUnitCommand(unit, destX, unit._y);
+                return new MoveUnitCommand(unit, unit._x - 1, unit._y);
             }
 
             return null;
@@ -206,38 +209,56 @@ public class YuEunhye_Command : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        int maxIndex = _list.Count - 1;
+
         var command = _handler.handlerInput(_unit);
         if (command != null)
         {
+            if (selectIndex < maxIndex)
+            {
+                _list.RemoveRange(selectIndex + 1, maxIndex - selectIndex);
+            }
+
             command.Execute();
             _list.Add(command);
-            _text.text = _unit._commandText;
+
+            selectIndex = _list.Count - 1;
+            Debug.Log(string.Format("Execute[{0}]" + _unit._commandText, selectIndex));
         }
         else if (Input.GetKeyDown(KeyCode.Z))
         {
-            var count = _list.Count;
-            if (count > 0)
+            if (maxIndex >= 0)
             {
-                if (selectIndex == INVALID_INDEX)
-                {
-                    selectIndex = count - 1;
-                }
-                else if (selectIndex == START_INDEX)
+                if (selectIndex == START_INDEX)
                 {
                     // 더 이상 뒤로 갈 수 없다.
                 }
                 else
                 {
+                    _list[selectIndex].Undo();
                     --selectIndex;
+                    Debug.Log(string.Format("Undo[{0}]" + _unit._commandText, selectIndex));
                 }
-
-                _list[selectIndex].Undo();
             }
-
         }
         else if (Input.GetKeyDown(KeyCode.R))
         {
-            
+            if (selectIndex == INVALID_INDEX)
+            {
+                // 더 이상 앞으로 나갈 수 없다.
+            }
+            else if (selectIndex >= maxIndex)
+            {
+                // 더 이상 앞으로 나갈 수 없다.
+            }
+            else
+            {
+                ++selectIndex;
+                _list[selectIndex].Redo();
+                Debug.Log(string.Format("Redo[{0}]" + _unit._commandText, selectIndex));
+            }
         }
+
+        _text.text = _unit._commandText;
     }
 }
