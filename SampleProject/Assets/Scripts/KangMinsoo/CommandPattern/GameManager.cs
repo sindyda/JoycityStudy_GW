@@ -7,58 +7,62 @@ public class GameManager : MonoBehaviour
     public Unit unit = null;
     List<CommandPattern> commandList = new List<CommandPattern>();
     int currentMoveIndex = 0;
-    int maxMoveIndex = 0;
 
+    public void InputKey(CommandPattern pattern)
+    {
+        // 새로 스택을 쌓아야 한다면
+        if (currentMoveIndex + 1 < commandList.Count)
+        {
+            commandList.RemoveRange(currentMoveIndex, commandList.Count - currentMoveIndex);
+        }
 
-    // Update is called once per frame
+        commandList.Add(pattern);
+        commandList[currentMoveIndex].ExecuteAction();
+        ++currentMoveIndex;
+    }
+
     void Update()
     {
         if (unit != null)
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                commandList.Add(new MoveUnitCommand(unit, unit.posX - 1, unit.posY));
-                commandList[currentMoveIndex].executeAction();
-                ++currentMoveIndex;
-                maxMoveIndex = commandList.Count;
+                InputKey(new MoveUnitCommand(unit, unit.posX - 1, unit.posY));
             }
             else if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                commandList.Add(new MoveUnitCommand(unit, unit.posX, unit.posY + 1));
-                commandList[currentMoveIndex].executeAction();
-                ++currentMoveIndex;
-                maxMoveIndex = commandList.Count;
+                InputKey(new MoveUnitCommand(unit, unit.posX, unit.posY + 1));
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                commandList.Add(new MoveUnitCommand(unit, unit.posX + 1, unit.posY));
-                commandList[currentMoveIndex].executeAction();
-                ++currentMoveIndex;
-                maxMoveIndex = commandList.Count;
+                InputKey(new MoveUnitCommand(unit, unit.posX + 1, unit.posY));
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                commandList.Add(new MoveUnitCommand(unit, unit.posX, unit.posY - 1));
-                commandList[currentMoveIndex].executeAction();
-                ++currentMoveIndex;
-                maxMoveIndex = commandList.Count;
+                InputKey(new MoveUnitCommand(unit, unit.posX, unit.posY - 1));
+            }
+            else if (Input.GetKeyDown(KeyCode.U))
+            {
+                InputKey(new ScaleUnitCommand(unit, unit.scaleX + 1.0f, unit.scaleY + 1.0f));
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                InputKey(new ScaleUnitCommand(unit, unit.scaleX - 1.0f, unit.scaleY - 1.0f));
             }
             else if (Input.GetKeyDown(KeyCode.Z))
             {
-                Debug.Log(currentMoveIndex);
                 if (currentMoveIndex > 0)
                 {
-                    var moveUnit = commandList[--currentMoveIndex] as MoveUnitCommand;
-                    unit.MoveTo(moveUnit.undoX, moveUnit.undoY);
+                    var moveUnit = commandList[--currentMoveIndex] as CommandPattern;
+                    moveUnit.undoAction();
                 }
             }
             else if (Input.GetKeyDown(KeyCode.R))
             {
-                Debug.Log(currentMoveIndex);
                 if (currentMoveIndex < commandList.Count)
                 {
-                    var moveUnit = commandList[currentMoveIndex++] as MoveUnitCommand;
-                    unit.MoveTo(moveUnit.undoX, moveUnit.undoY);
+                    var moveUnit = commandList[currentMoveIndex++] as CommandPattern;
+                    moveUnit.redoAction();
                 }
             }
         }
