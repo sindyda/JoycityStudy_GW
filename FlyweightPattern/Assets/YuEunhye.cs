@@ -24,35 +24,35 @@ public class YuEunhye : MonoBehaviour
 
     class World
     {
-        Dictionary<int, Dictionary<int, Terrain>> _tiles = new Dictionary<int, Dictionary<int, Terrain>>();
+        const int width = 50;
+        const int height = 50;
+
+        Terrain[,] _tiles = new Terrain[width, height];
 
         Terrain _grassTerrain = new Terrain(1, false, Color.green);
         Terrain _hillTerrain = new Terrain(2, false, Color.gray);
         Terrain _riverTerrain = new Terrain(3, true, Color.blue);
 
-        public void GenerateTerrain(int width, int height, int range)
+        public void GenerateTerrain(int range)
         {
+            int riverX = Random.Range(0, width);
             for (int x = 0; x < width; ++x)
             {
-                var ytiles = new Dictionary<int, Terrain>();
                 for (int y = 0; y < height; ++y)
                 {
-                    if (Random.Range(0, range) == 0)
+                    if (x == riverX)
                     {
-                        ytiles.Add(y, _hillTerrain);
+                        _tiles[x, y] = _riverTerrain;
+                    }
+                    else if (Random.Range(0, range) == 0)
+                    {
+                        _tiles[x, y] = _hillTerrain;
                     }
                     else
                     {
-                        ytiles.Add(y, _grassTerrain);
+                        _tiles[x, y] = _grassTerrain;
                     }
                 }
-                _tiles.Add(x, ytiles);
-            }
-
-            int riverX = Random.Range(0, width);
-            for (int y = 0; y < height; ++y)
-            {
-                _tiles[riverX][y] = _riverTerrain;
             }
         }
 
@@ -61,15 +61,13 @@ public class YuEunhye : MonoBehaviour
             var sizeX = image.rectTransform.sizeDelta.x;
             var sizeY = image.rectTransform.sizeDelta.y;
 
-            foreach (var xtiles in _tiles)
+            for (int x = 0; x < _tiles.GetLength(0); ++x)
             {
-                var x = xtiles.Key;
-                foreach (var ytiles in xtiles.Value)
+                for (int y = 0; y < _tiles.GetLength(1); ++y)
                 {
-                    var y = ytiles.Key;
-                    var terrain = ytiles.Value;
-
+                    var terrain = _tiles.GetValue(x, y) as Terrain;
                     image.color = terrain.GetColor();
+
                     var clone = Instantiate(image, parent.transform, false);
                     clone.transform.position = new Vector3(x * sizeX, y * sizeY, 1);
                 }
@@ -79,17 +77,22 @@ public class YuEunhye : MonoBehaviour
 
     public GameObject parent;
     public Image image;
+
+    World world = new World();
     // Start is called before the first frame update
     void Start()
     {
-        World world = new World();
-        world.GenerateTerrain(50, 50, 10);
+        world.GenerateTerrain(10);
         world.Show(image, parent);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            world.GenerateTerrain(10);
+            world.Show(image, parent);
+        }
     }
 }
