@@ -58,6 +58,9 @@ public class YuEunhye : MonoBehaviour
 
         public void Show(Image image, GameObject parent)
         {
+            var sizeX = image.rectTransform.sizeDelta.x;
+            var sizeY = image.rectTransform.sizeDelta.y;
+
             foreach (var xtiles in _tiles)
             {
                 var x = xtiles.Key;
@@ -68,7 +71,7 @@ public class YuEunhye : MonoBehaviour
 
                     image.color = terrain.GetColor();
                     var clone = Instantiate(image, parent.transform, false);
-                    clone.transform.position = new Vector3(x * 10, y * 10, 1);
+                    clone.transform.position = new Vector3(x * sizeX, y * sizeY, 1);
                 }
             }
         }
