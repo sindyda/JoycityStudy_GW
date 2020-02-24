@@ -14,6 +14,7 @@ public class KMS_FlyweightPattern : MonoBehaviour
     KMS_FieldObject fieldIsle = new KMS_FieldObject(2, 2, true, "Isle");
     KMS_FieldObject fieldGuildDepot = new KMS_FieldObject(2, 2, false, "GuildDepot");
     KMS_FieldObject fieldMonster = new KMS_FieldObject(3, 3, true, "Monster");
+    KMS_FieldObject fieldAircraftMonster = new KMS_FieldObject(3, 3, true, "aircraft");
 
     private void Start()
     {
@@ -21,7 +22,7 @@ public class KMS_FlyweightPattern : MonoBehaviour
         {
             for (int j = 0; j < mapSizeY; ++j)
             {
-                switch (Random.Range(0, 3))
+                switch (Random.Range(0, 4))
                 {
                     case 0:
                         fieldObjectArray[i, j] = fieldIsle;
@@ -31,6 +32,9 @@ public class KMS_FlyweightPattern : MonoBehaviour
                         break;
                     case 2:
                         fieldObjectArray[i, j] = fieldMonster;
+                        break;
+                    case 3:
+                        fieldObjectArray[i, j] = fieldAircraftMonster;
                         break;
                 }
             }
