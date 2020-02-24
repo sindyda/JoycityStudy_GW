@@ -24,17 +24,18 @@ public class YuEunhye : MonoBehaviour
 
     class World
     {
-        const int width = 50;
-        const int height = 50;
+        const int range = 10;
 
-        Terrain[,] _tiles = new Terrain[width, height];
+        Terrain[,] _tiles;
 
         Terrain _grassTerrain = new Terrain(1, false, Color.green);
         Terrain _hillTerrain = new Terrain(2, false, Color.gray);
         Terrain _riverTerrain = new Terrain(3, true, Color.blue);
 
-        public void GenerateTerrain(int range)
+        public void FlyweightTerrain(int width, int height)
         {
+            _tiles = new Terrain[width, height];
+
             int riverX = Random.Range(0, width);
             for (int x = 0; x < width; ++x)
             {
@@ -51,6 +52,31 @@ public class YuEunhye : MonoBehaviour
                     else
                     {
                         _tiles[x, y] = _grassTerrain;
+                    }
+                }
+            }
+        }
+
+        public void NewTerrain(int width, int height)
+        {
+            _tiles = new Terrain[width, height];
+
+            int riverX = Random.Range(0, width);
+            for (int x = 0; x < width; ++x)
+            {
+                for (int y = 0; y < height; ++y)
+                {
+                    if (x == riverX)
+                    {
+                        _tiles[x, y] = new Terrain(3, true, Color.blue);
+                    }
+                    else if (Random.Range(0, range) == 0)
+                    {
+                        _tiles[x, y] = new Terrain(2, false, Color.gray);
+                    }
+                    else
+                    {
+                        _tiles[x, y] = new Terrain(1, false, Color.green);
                     }
                 }
             }
@@ -77,22 +103,53 @@ public class YuEunhye : MonoBehaviour
 
     public GameObject parent;
     public Image image;
+    public Text text;
 
     World world = new World();
     // Start is called before the first frame update
     void Start()
     {
-        world.GenerateTerrain(10);
-        world.Show(image, parent);
+        text.text = "F: Flyweight / N: New / C: Compare";
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            world.GenerateTerrain(10);
+            var beforeTime = Time.realtimeSinceStartup;
+            world.FlyweightTerrain(50, 50);
+            var afterTime = Time.realtimeSinceStartup;
+
             world.Show(image, parent);
+
+            text.text = string.Format("Flyweight: {0}", afterTime - beforeTime);
+        }
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            var beforeTime = Time.realtimeSinceStartup;
+            world.NewTerrain(50, 50);
+            var afterTime = Time.realtimeSinceStartup;
+
+            world.Show(image, parent);
+
+            text.text = string.Format("New: {0}", afterTime - beforeTime);
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            var beforeTime1 = Time.realtimeSinceStartup;
+            world.FlyweightTerrain(1000, 1000);
+            var afterTime1 = Time.realtimeSinceStartup;
+            var flytime = afterTime1 - beforeTime1;
+
+            var beforeTime2 = Time.realtimeSinceStartup;
+            world.NewTerrain(1000, 1000);
+            var afterTime2 = Time.realtimeSinceStartup;
+            var newtime = afterTime2 - beforeTime2;
+
+            text.text = string.Format("Flyweight: {0:0.000000}\nNew: {1:0.000000}\n\nGap: {2:0.000000}", flytime, newtime, Mathf.Abs(flytime - newtime));
         }
     }
 }
