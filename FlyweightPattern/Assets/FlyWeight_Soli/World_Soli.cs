@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class World_Soli
+public class World_Soli : MonoBehaviour
 {
     public World_Soli()
     {
