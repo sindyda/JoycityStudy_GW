@@ -21,15 +21,15 @@ public class KMS_GameManager : MonoBehaviour
     {
         switch (type)
         {
-            case 0:
+            case 0: // 상태창
                 statusUI.gameObject.SetActive(true);
                 subject.AddObserver(statusUI);
                 break;
-            case 1:
+            case 1: // 인벤토리
                 InventoryUI.gameObject.SetActive(true);
                 subject.AddObserver(InventoryUI);
                 break;
-            case 2:
+            case 2: // 장비창
                 EquipUI.gameObject.SetActive(true);
                 subject.AddObserver(EquipUI);
                 break;
