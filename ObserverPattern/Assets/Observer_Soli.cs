@@ -45,7 +45,7 @@ public class Audio_Soli : Observer_Soli
                 entity.audioText.text = "A 아ㅏㅏㅏㅏㅏㅏㅏㅏㅏ";
                 break;
             case EventType_Soli.EventType_Soli_B:
-                entity.audioText.text = "B 비ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ";
+                entity.audioText.text = "B 삐ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ";
                 break;
             case EventType_Soli.EventType_Soli_C:
                 entity.audioText.text = "C 씨ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ";
