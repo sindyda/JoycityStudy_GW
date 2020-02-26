@@ -24,35 +24,61 @@ public class YuEunhye : MonoBehaviour
 
     class World
     {
-        Dictionary<int, Dictionary<int, Terrain>> _tiles = new Dictionary<int, Dictionary<int, Terrain>>();
+        const int range = 10;
+
+        Terrain[,] _tiles;
 
         Terrain _grassTerrain = new Terrain(1, false, Color.green);
         Terrain _hillTerrain = new Terrain(2, false, Color.gray);
         Terrain _riverTerrain = new Terrain(3, true, Color.blue);
 
-        public void GenerateTerrain(int width, int height, int range)
+        public void FlyweightTerrain(int width, int height)
         {
+            _tiles = new Terrain[width, height];
+
+            int riverX = Random.Range(0, width);
             for (int x = 0; x < width; ++x)
             {
-                var ytiles = new Dictionary<int, Terrain>();
                 for (int y = 0; y < height; ++y)
                 {
-                    if (Random.Range(0, range) == 0)
+                    if (x == riverX)
                     {
-                        ytiles.Add(y, _hillTerrain);
+                        _tiles[x, y] = _riverTerrain;
+                    }
+                    else if (Random.Range(0, range) == 0)
+                    {
+                        _tiles[x, y] = _hillTerrain;
                     }
                     else
                     {
-                        ytiles.Add(y, _grassTerrain);
+                        _tiles[x, y] = _grassTerrain;
                     }
                 }
-                _tiles.Add(x, ytiles);
             }
+        }
+
+        public void NewTerrain(int width, int height)
+        {
+            _tiles = new Terrain[width, height];
 
             int riverX = Random.Range(0, width);
-            for (int y = 0; y < height; ++y)
+            for (int x = 0; x < width; ++x)
             {
-                _tiles[riverX][y] = _riverTerrain;
+                for (int y = 0; y < height; ++y)
+                {
+                    if (x == riverX)
+                    {
+                        _tiles[x, y] = new Terrain(3, true, Color.blue);
+                    }
+                    else if (Random.Range(0, range) == 0)
+                    {
+                        _tiles[x, y] = new Terrain(2, false, Color.gray);
+                    }
+                    else
+                    {
+                        _tiles[x, y] = new Terrain(1, false, Color.green);
+                    }
+                }
             }
         }
 
@@ -61,15 +87,13 @@ public class YuEunhye : MonoBehaviour
             var sizeX = image.rectTransform.sizeDelta.x;
             var sizeY = image.rectTransform.sizeDelta.y;
 
-            foreach (var xtiles in _tiles)
+            for (int x = 0; x < _tiles.GetLength(0); ++x)
             {
-                var x = xtiles.Key;
-                foreach (var ytiles in xtiles.Value)
+                for (int y = 0; y < _tiles.GetLength(1); ++y)
                 {
-                    var y = ytiles.Key;
-                    var terrain = ytiles.Value;
-
+                    var terrain = _tiles.GetValue(x, y) as Terrain;
                     image.color = terrain.GetColor();
+
                     var clone = Instantiate(image, parent.transform, false);
                     clone.transform.position = new Vector3(x * sizeX, y * sizeY, 1);
                 }
@@ -79,17 +103,53 @@ public class YuEunhye : MonoBehaviour
 
     public GameObject parent;
     public Image image;
+    public Text text;
+
+    World world = new World();
     // Start is called before the first frame update
     void Start()
     {
-        World world = new World();
-        world.GenerateTerrain(50, 50, 10);
-        world.Show(image, parent);
+        text.text = "F: Flyweight / N: New / C: Compare";
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            var beforeTime = Time.realtimeSinceStartup;
+            world.FlyweightTerrain(50, 50);
+            var afterTime = Time.realtimeSinceStartup;
+
+            world.Show(image, parent);
+
+            text.text = string.Format("Flyweight: {0}", afterTime - beforeTime);
+        }
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            var beforeTime = Time.realtimeSinceStartup;
+            world.NewTerrain(50, 50);
+            var afterTime = Time.realtimeSinceStartup;
+
+            world.Show(image, parent);
+
+            text.text = string.Format("New: {0}", afterTime - beforeTime);
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            var beforeTime1 = Time.realtimeSinceStartup;
+            world.FlyweightTerrain(1000, 1000);
+            var afterTime1 = Time.realtimeSinceStartup;
+            var flytime = afterTime1 - beforeTime1;
+
+            var beforeTime2 = Time.realtimeSinceStartup;
+            world.NewTerrain(1000, 1000);
+            var afterTime2 = Time.realtimeSinceStartup;
+            var newtime = afterTime2 - beforeTime2;
+
+            text.text = string.Format("Flyweight: {0:0.000000}\nNew: {1:0.000000}\n\nGap: {2:0.000000}", flytime, newtime, Mathf.Abs(flytime - newtime));
+        }
     }
 }
