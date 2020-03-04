@@ -49,7 +49,7 @@ public class Spawner_Soli
         prototype_ = prototype;
     }
 
-    public Monster_Soli spawnMonster()
+    public virtual Monster_Soli spawnMonster()
     {
         return prototype_.clone();
     }

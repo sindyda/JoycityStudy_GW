@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PrototypePatternTest_Soli : MonoBehaviour
 {
-    public int ghostNumber = 1;
-    public int demonNumber = 1;
+    private int ghostNumber = 0;
+    private int demonNumber = 0;
 
     Monster_Soli ghostPrototype = null;
     Spawner_Soli ghostSpawner = null;
@@ -15,22 +15,26 @@ public class PrototypePatternTest_Soli : MonoBehaviour
 
     void Start()
     {
-        ghostPrototype = new Ghost_Soli(15, 3);
+        ghostPrototype = new Ghost_Soli(100, 3);
         ghostSpawner = new Spawner_Soli(ghostPrototype);
 
-        demonPrototype = new Demon_Soli(40, 5);
+        demonPrototype = new Demon_Soli(30, 5);
         demonSpawner = new Spawner_Soli(demonPrototype);
+    }
 
-        for (int i = 0; i < ghostNumber; ++i)
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.UpArrow))
         {
+            ++ghostNumber;
             var tempGhost = ghostSpawner.spawnMonster();
-            Debug.Log(i + 1 + "번째 고슽 / 체력 : " + tempGhost.health + " /스피드 : " + tempGhost.speed);
+            Debug.Log(ghostNumber + "번째 고슽 생성 / 체력 : " + tempGhost.health + " /스피드 : " + tempGhost.speed);
         }
-
-        for (int i = 0; i < demonNumber; ++i)
+        else if(Input.GetKeyDown(KeyCode.DownArrow))
         {
-            var tempDemon = demonSpawner.spawnMonster();
-            Debug.Log(i + 1 + "번째 악마? / 체력 : " + tempDemon.health + " /스피드 : " + tempDemon.speed);
+            ++demonNumber;
+            var tempGhost = demonSpawner.spawnMonster();
+            Debug.Log(demonNumber + "번째 악마 생성 / 체력 : " + tempGhost.health + " /스피드 : " + tempGhost.speed);
         }
     }
 }
