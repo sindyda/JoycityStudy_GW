@@ -41,7 +41,6 @@ public class Demon_Soli : Monster_Soli
     }
 }
 
-
 public class Spawner_Soli
 {
     public Spawner_Soli(Monster_Soli prototype)
