@@ -13,7 +13,7 @@ public class KMS_ProtoTypePattern
         spawnCallBack = new SpawnCallBack(callBack);
     }
 
-    public virtual KMS_Monster SpawnMonster()
+    public KMS_Monster SpawnMonster()
     {
         return spawnCallBack();
     }
