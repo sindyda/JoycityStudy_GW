@@ -6,7 +6,15 @@ using UnityEngine.UI;
 
 public class yueunhye : MonoBehaviour
 {
-    public class SpawnerFor<T> where T : Monster, new()
+    public class Spawner
+    {
+        public Spawner()
+        {
+
+        }
+    }
+
+    public class SpawnerFor<T> : Spawner where T : Monster, new()
     {
         public T SpawnMonster ()
         {
