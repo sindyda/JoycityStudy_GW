@@ -35,8 +35,10 @@ public class YuEunhye : MonoBehaviour
             {
                 //엎드리기
             }
-
-            base.HandleInput(user);
+            else
+            {
+                base.HandleInput(user);
+            }
         }
         public override void Enter(User obj)
         {
@@ -51,7 +53,18 @@ public class YuEunhye : MonoBehaviour
             {
                 //서기
             }
-            base.HandleInput(user);
+            else if (Input.GetKeyUp(KeyCode.RightArrow))
+            {
+                //걷기
+            }
+            else if (Input.GetKeyUp(KeyCode.LeftArrow))
+            {
+                //달리기
+            }
+            else
+            {
+                base.HandleInput(user);
+            }
         }
         public override void Enter(User user)
         {
@@ -77,7 +90,10 @@ public class YuEunhye : MonoBehaviour
             {
                 // 3번 무기
             }
-            base.HandleInput(user);
+            else
+            {
+                base.HandleInput(user);
+            }
         }
         public override void Enter(User user)
         {
