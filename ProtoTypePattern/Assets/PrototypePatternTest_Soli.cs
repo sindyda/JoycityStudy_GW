@@ -27,14 +27,14 @@ public class PrototypePatternTest_Soli : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.UpArrow))
         {
             ++ghostNumber;
-            var tempGhost = ghostSpawner.spawnMonster();
-            Debug.Log(ghostNumber + "번째 고오오오오호슽 생성 / 체력 : " + tempGhost.health + " /스피드 : " + tempGhost.speed);
+            var tempGhost = ghostSpawner?.spawnMonster();
+            Debug.Log(ghostNumber + "번째 고오오오오호슽 생성 / 체력 : " + tempGhost?.health + " /스피드 : " + tempGhost?.speed);
         }
         else if(Input.GetKeyDown(KeyCode.DownArrow))
         {
             ++demonNumber;
-            var tempGhost = demonSpawner.spawnMonster();
-            Debug.Log(demonNumber + "번째 악마!! 생성 / 체력 : " + tempGhost.health + " /스피드 : " + tempGhost.speed);
+            var tempGhost = demonSpawner?.spawnMonster();
+            Debug.Log(demonNumber + "번째 악마!! 생성 / 체력 : " + tempGhost?.health + " /스피드 : " + tempGhost?.speed);
         }
     }
 }

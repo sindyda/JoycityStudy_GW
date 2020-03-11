@@ -55,3 +55,31 @@ public class Spawner_Soli
 
     private Monster_Soli prototype_;
 }
+
+public class Spawner2_Soli
+{
+    public Spawner2_Soli()
+    {
+        
+    }
+
+    public virtual Monster_Soli spawnMonster()
+    {
+        return null;
+    }
+}
+
+public class SpawnerFor_Soli<T> : Spawner2_Soli where T : Monster_Soli, new()
+{
+    public SpawnerFor_Soli(Monster_Soli prototype)
+    {
+        prototype_ = prototype;
+    }
+
+    public override Monster_Soli spawnMonster()
+    {
+        return new T();
+    }
+
+    private Monster_Soli prototype_;
+}
