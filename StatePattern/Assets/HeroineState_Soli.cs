@@ -26,8 +26,6 @@ public class DuckingState_Soli : HeroineState_Soli
 
     public override HeroineState_Soli handleInput(Heroine_Soli heroine, KEY_TYPE input)
     {
-        base.handleInput(heroine, input);
-
         if(input == KEY_TYPE.RELEASE_DOWN)
         {
             heroine.setImage(HEROINE_IMAGE_TYPE.IMAGE_STANDING);
@@ -39,8 +37,6 @@ public class DuckingState_Soli : HeroineState_Soli
 
     public override void update(Heroine_Soli heroine)
     {
-        base.update(heroine);
-
         chargeTime_++;
         if (chargeTime_ > MAX_CHARGE)
         {
@@ -61,8 +57,6 @@ public class StandingState_Soli : HeroineState_Soli
 
     public override HeroineState_Soli handleInput(Heroine_Soli heroine, KEY_TYPE input)
     {
-        base.handleInput(heroine, input);
-
         if (input == KEY_TYPE.PRESS_DOWN)
         {
             heroine.setImage(HEROINE_IMAGE_TYPE.IMAGE_DUCKING);
@@ -94,8 +88,6 @@ public class JumpingState_Soli : HeroineState_Soli
 
     public override HeroineState_Soli handleInput(Heroine_Soli heroine, KEY_TYPE input)
     {
-        base.handleInput(heroine, input);
-
         if (input == KEY_TYPE.PRESS_DOWN)
         {
             heroine.setImage(HEROINE_IMAGE_TYPE.IMAGE_DIVING);
@@ -107,8 +99,6 @@ public class JumpingState_Soli : HeroineState_Soli
 
     public override void update(Heroine_Soli heroine)
     {
-        base.update(heroine);
-
         jumpTime_++;
         if (jumpTime_ > MAX_JUMPING)
         {
@@ -131,8 +121,6 @@ public class DvingState_Soli : HeroineState_Soli
 
     public override HeroineState_Soli handleInput(Heroine_Soli heroine, KEY_TYPE input)
     {
-        base.handleInput(heroine, input);
-
         if (input == KEY_TYPE.PRESS_DOWN)
         {
             heroine.setImage(HEROINE_IMAGE_TYPE.IMAGE_STANDING);
@@ -144,8 +132,6 @@ public class DvingState_Soli : HeroineState_Soli
 
     public override void update(Heroine_Soli heroine)
     {
-        base.update(heroine);
-
         divingTime_++;
         if (divingTime_ > MAX_DIVING)
         {

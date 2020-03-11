@@ -19,13 +19,11 @@ public enum KEY_TYPE
 
 public class Heroine_Soli : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
         
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.DownArrow))
@@ -35,7 +33,10 @@ public class Heroine_Soli : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.B))
             handleInput(KEY_TYPE.PRESS_B);
 
-        state_.update(this);
+        if (state_ != null)
+        {
+            state_.update(this);
+        }
     }
 
     private HeroineState_Soli state_ = new StandingState_Soli();
