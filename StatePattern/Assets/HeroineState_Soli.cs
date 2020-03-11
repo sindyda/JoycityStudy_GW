@@ -26,8 +26,6 @@ public class DuckingState_Soli : HeroineState_Soli
 
     public override HeroineState_Soli handleInput(Heroine_Soli heroine, KEY_TYPE input)
     {
-        base.handleInput(heroine, input);
-
         if(input == KEY_TYPE.RELEASE_DOWN)
         {
             heroine.setImage(HEROINE_IMAGE_TYPE.IMAGE_STANDING);
@@ -39,8 +37,6 @@ public class DuckingState_Soli : HeroineState_Soli
 
     public override void update(Heroine_Soli heroine)
     {
-        base.update(heroine);
-
         chargeTime_++;
         if (chargeTime_ > MAX_CHARGE)
         {
