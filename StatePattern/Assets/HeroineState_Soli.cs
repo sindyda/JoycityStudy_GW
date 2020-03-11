@@ -17,7 +17,7 @@ public class HeroineState_Soli
 
 public class DuckingState_Soli : HeroineState_Soli
 {
-    const int MAX_CHARGE = 30;
+    const int MAX_CHARGE = 100;
 
     public DuckingState_Soli()
     {
@@ -85,7 +85,7 @@ public class StandingState_Soli : HeroineState_Soli
 
 public class JumpingState_Soli : HeroineState_Soli
 {
-    const int MAX_JUMPING = 30;
+    const int MAX_JUMPING = 100;
 
     public JumpingState_Soli()
     {
@@ -122,7 +122,7 @@ public class JumpingState_Soli : HeroineState_Soli
 
 public class DvingState_Soli : HeroineState_Soli
 {
-    const int MAX_DIVING = 40;
+    const int MAX_DIVING = 100;
 
     public DvingState_Soli()
     {
