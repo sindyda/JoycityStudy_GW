@@ -30,7 +30,7 @@ public class Heroine_Soli : MonoBehaviour
             handleInput(KEY_TYPE.PRESS_DOWN);
         else if (Input.GetKeyUp(KeyCode.DownArrow))
             handleInput(KEY_TYPE.RELEASE_DOWN);
-        else if (Input.GetKeyUp(KeyCode.B))
+        else if (Input.GetKeyDown(KeyCode.B))
             handleInput(KEY_TYPE.PRESS_B);
 
         if (state_ != null)
