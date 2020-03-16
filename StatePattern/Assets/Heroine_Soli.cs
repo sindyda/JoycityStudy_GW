@@ -21,8 +21,11 @@ public enum KEY_TYPE
     PRESS_DOWN,
     RELEASE_DOWN,
     PRESS_B,
-    PRESS_RightArrow,
-    RELEASE_RightArrow,
+    PRESS_RIGHT,
+    RELEASE_RIGHT,
+    PRESS_LEFT,
+    RELEASE_LEFT,
+
     PRESS_A,
 }
 
@@ -30,6 +33,9 @@ public class Heroine_Soli : MonoBehaviour
 {
     private HeroineState_Soli state_ = null;
     private HeroineState_Soli equip_ = null;
+
+    private HeroineState_Soli tempState = null;
+    private HeroineState_Soli tempEquip = null;
 
     void Start()
     {
@@ -45,19 +51,24 @@ public class Heroine_Soli : MonoBehaviour
             handleInput(KEY_TYPE.RELEASE_DOWN);
         else if (Input.GetKeyDown(KeyCode.B))
             handleInput(KEY_TYPE.PRESS_B);
+        
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+            handleInput(KEY_TYPE.PRESS_RIGHT);
+        else if (Input.GetKeyUp(KeyCode.RightArrow))
+            handleInput(KEY_TYPE.RELEASE_RIGHT);
 
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            handleInput(KEY_TYPE.PRESS_LEFT);
+        else if (Input.GetKeyUp(KeyCode.LeftArrow))
+            handleInput(KEY_TYPE.RELEASE_LEFT);
+        
         else if (Input.GetKeyDown(KeyCode.A))
             handleInput(KEY_TYPE.PRESS_A);
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-            handleInput(KEY_TYPE.PRESS_RightArrow);
-        else if (Input.GetKeyUp(KeyCode.RightArrow))
-            handleInput(KEY_TYPE.RELEASE_RightArrow);
-
-        HeroineState_Soli state = state_?.update(this);
-        if (state != null)
+        tempState = state_?.update(this);
+        if (tempState != null)
         {
-            state_ = state;
+            state_ = tempState;
             state_.enter(this);
 
             state_.update(this);
@@ -67,17 +78,17 @@ public class Heroine_Soli : MonoBehaviour
 
     public void handleInput(KEY_TYPE input)
     {
-        HeroineState_Soli state = state_?.handleInput(this, input);
-        if (state != null)
+        tempState = state_?.handleInput(this, input);
+        if (tempState != null)
         {
-            state_ = state;
+            state_ = tempState;
             state_.enter(this);
         }
 
-        HeroineState_Soli equip = equip_?.handleInput(this, input);
-        if (equip != null)
+        tempEquip = equip_?.handleInput(this, input);
+        if (tempEquip != null)
         {
-            equip_ = equip;
+            equip_ = tempEquip;
             equip_.enter(this);
         }
     }
@@ -122,5 +133,10 @@ public class Heroine_Soli : MonoBehaviour
     public void walking()
     {
         Debug.Log("걷는 중...");
+    }
+
+    public void runing()
+    {
+        Debug.Log("뛰는 중...!");
     }
 }

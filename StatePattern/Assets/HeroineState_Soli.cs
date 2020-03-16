@@ -30,9 +30,13 @@ public class OnGroundState_Soli : HeroineState_Soli
         {
             return new JumpingState_Soli();
         }
-        else if (input == KEY_TYPE.PRESS_RightArrow)
+        else if (input == KEY_TYPE.PRESS_RIGHT)
         {
-            return new JumpingState_Soli();
+            return new WalkState_Soli();
+        }
+        else if (input == KEY_TYPE.PRESS_LEFT)
+        {
+            return new RunState_Soli();
         }
 
         return null;
@@ -47,6 +51,91 @@ public class OnGroundState_Soli : HeroineState_Soli
     {
 
     }
+}
+
+public class StandingState_Soli : OnGroundState_Soli
+{
+    public override HeroineState_Soli handleInput(Heroine_Soli heroine, KEY_TYPE input)
+    {
+        return base.handleInput(heroine, input);
+    }
+
+    public override void enter(Heroine_Soli heroine)
+    {
+        heroine.setImage(HEROINE_IMAGE_TYPE.IMAGE_STANDING);
+    }
+}
+
+public class WalkState_Soli : OnGroundState_Soli
+{
+    float walkingStateUpdateTime = 0.7f;
+    
+    public WalkState_Soli()
+    {
+        walkTime_ = 0;
+    }
+
+    public override HeroineState_Soli handleInput(Heroine_Soli heroine, KEY_TYPE input)
+    {
+        if (input == KEY_TYPE.RELEASE_RIGHT)
+        {
+            return new StandingState_Soli();
+        }
+        else
+        {
+            return base.handleInput(heroine, input);
+        }
+    }
+
+    public override HeroineState_Soli update(Heroine_Soli heroine)
+    {
+        walkTime_ += Time.deltaTime;
+        if (walkTime_ > walkingStateUpdateTime)
+        {
+            walkTime_ = 0;
+            heroine.walking();
+        }
+
+        return null;
+    }
+
+    private float walkTime_;
+}
+
+public class RunState_Soli : OnGroundState_Soli
+{
+    float runingStateUpdateTime = 0.3f;
+
+    public RunState_Soli()
+    {
+        runTime_ = 0;
+    }
+
+    public override HeroineState_Soli handleInput(Heroine_Soli heroine, KEY_TYPE input)
+    {
+        if (input == KEY_TYPE.RELEASE_LEFT)
+        {
+            return new StandingState_Soli();
+        }
+        else
+        {
+            return base.handleInput(heroine, input);
+        }
+    }
+
+    public override HeroineState_Soli update(Heroine_Soli heroine)
+    {
+        runTime_ += Time.deltaTime;
+        if (runTime_ > runingStateUpdateTime)
+        {
+            runTime_ = 0;
+            heroine.runing();
+        }
+
+        return null;
+    }
+    
+    private float runTime_;
 }
 
 public class DuckingState_Soli : HeroineState_Soli
@@ -86,79 +175,6 @@ public class DuckingState_Soli : HeroineState_Soli
     }
 
     private float chargeTime_;
-}
-
-public class StandingState_Soli : HeroineState_Soli
-{
-    public override HeroineState_Soli handleInput(Heroine_Soli heroine, KEY_TYPE input)
-    {
-        if (input == KEY_TYPE.PRESS_DOWN)
-        {
-            return new DuckingState_Soli();
-        }
-        else if (input == KEY_TYPE.PRESS_B)
-        {
-            return new JumpingState_Soli();
-        }
-        else if (input == KEY_TYPE.PRESS_RightArrow)
-        {
-            return new WalkState_Soli();
-        }
-
-        return null;
-    }
-
-    public override void enter(Heroine_Soli heroine)
-    {
-        heroine.setImage(HEROINE_IMAGE_TYPE.IMAGE_STANDING);
-    }
-}
-
-public class WalkState_Soli : HeroineState_Soli
-{
-    float walkingStateUpdateTime = 0.5f;
-    
-    public WalkState_Soli()
-    {
-        walkTime_ = 0;
-    }
-
-    public override HeroineState_Soli handleInput(Heroine_Soli heroine, KEY_TYPE input)
-    {
-        if (input == KEY_TYPE.RELEASE_RightArrow)
-        {
-            return new StandingState_Soli();
-        }
-        else if (input == KEY_TYPE.PRESS_RightArrow)
-        {
-            return new WalkState_Soli();
-        }
-        else if (input == KEY_TYPE.PRESS_B)
-        {
-            return new JumpingState_Soli();
-        }
-
-        return null;
-    }
-
-    public override HeroineState_Soli update(Heroine_Soli heroine)
-    {
-        walkTime_ += Time.deltaTime;
-        if (walkTime_ > walkingStateUpdateTime)
-        {
-            walkTime_ = 0;
-            heroine.walking();
-        }
-
-        return null;
-    }
-
-    public override void enter(Heroine_Soli heroine)
-    {
-
-    }
-
-    private float walkTime_;
 }
 
 public class JumpingState_Soli : HeroineState_Soli
