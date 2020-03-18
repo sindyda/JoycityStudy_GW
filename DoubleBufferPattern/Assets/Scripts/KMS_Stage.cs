@@ -25,10 +25,4 @@ public class KMS_Stage : MonoBehaviour
         dbpattern.update();
 
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
