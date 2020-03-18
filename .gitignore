@@ -68,3 +68,8 @@ SampleProject/crashlytics-build.properties
 
 
 # End of https://www.gitignore.io/api/unity
+DoubleBufferPattern/Assets/DubleBufferPatternScene_Soli.unity.meta
+DoubleBufferPattern/Assets/Scripts.meta
+DoubleBufferPattern/Assets/YuEunhye.meta
+DoubleBufferPattern/Assets/Scripts.meta
+*.meta

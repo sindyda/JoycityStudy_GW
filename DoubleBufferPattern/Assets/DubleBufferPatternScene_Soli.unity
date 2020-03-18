@@ -145,8 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   one: {fileID: 922332991}
-  two: {fileID: 942399633}
-  three: {fileID: 1404522093}
+  two: {fileID: 942399638}
+  three: {fileID: 1404522098}
 --- !u!65 &707932694
 BoxCollider:
   m_ObjectHideFlags: 0
