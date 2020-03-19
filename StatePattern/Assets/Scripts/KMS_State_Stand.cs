@@ -17,12 +17,17 @@ public class KMS_State_Stand : KMS_StatePattern
             return new KMS_State_Duck();
         else if (inputState == InputState.INPUT_PRESS_UP)
             return new KMS_State_Jump();
-
+        else if (inputState == InputState.INPUT_PRESS_ATTACK)
+            return new KMS_State_Attack();
         return null;
     }
 
     public override KMS_StatePattern Update(GameObject obj)
     {
         return null;
+    }
+
+    public override void Exit(GameObject obj)
+    {
     }
 }

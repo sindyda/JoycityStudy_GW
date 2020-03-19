@@ -25,4 +25,8 @@ public class KMS_State_Jump : KMS_StatePattern
 
         return null;
     }
+
+    public override void Exit(GameObject obj)
+    {
+    }
 }

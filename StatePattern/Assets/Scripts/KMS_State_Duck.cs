@@ -22,4 +22,8 @@ public class KMS_State_Duck : KMS_StatePattern
     {
         return null;
     }
+
+    public override void Exit(GameObject obj)
+    {
+    }
 }
