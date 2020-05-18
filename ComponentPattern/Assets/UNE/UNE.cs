@@ -10,7 +10,6 @@ public class UNE : MonoBehaviour
     {
         public int velocity;
         public int posX, posY;
-        public float scaleX, scaleY;
         public Image image;
 
         private UNE_InputComponent inputComp;
