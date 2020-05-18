@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -289,35 +288,5 @@ public class UNE_Main : MonoBehaviour
     {
         VM vm = new VM(0, 45, 7, 11);
         vm.Interpret(insts);
-    }
-    public void OnClick_Save()
-    {
-        string fileName = Path.Combine("UNE_Bytecode.bytes");
-        File.WriteAllBytes(fileName, insts.ToArray());
-    }
-    public void OnClick_Load()
-    {
-        viewText.text = "";
-
-        string fileName = System.IO.Path.Combine("UNE_Bytecode.bytes");
-        if (!File.Exists(fileName))
-        {
-            viewText.text = "File does not exist.";
-            return;
-        }
-
-        insts.Clear();
-
-        var readData = File.ReadAllBytes(fileName);
-        int startIndex = 0;
-        int maxIndex = readData.Length;
-        while (startIndex < maxIndex)
-        {
-            readData.GetValue
-            int convertData = BitConverter.ToInt32(readData, startIndex);
-            startIndex += sizeof(int);
-            insts.Add((byte)convertData);
-            viewText.text += convertData.ToString();
-        }
     }
 }
