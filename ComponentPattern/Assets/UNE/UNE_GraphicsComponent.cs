@@ -15,11 +15,11 @@ public class Player_GraphicsComponent : UNE_GraphicsComponent
     {
         if (go?.velocity < 0)
         {
-            go.scaleX = go.velocity;
+            go.image.rectTransform.localPosition = new Vector3(go.image.rectTransform.localPosition.x + go.velocity, go.image.rectTransform.localPosition.y, go.image.rectTransform.localPosition.z);
         }
         else if (go?.velocity > 0)
         {
-            go.scaleY = go.velocity;
+            go.image.rectTransform.localPosition = new Vector3(go.image.rectTransform.localPosition.x, go.image.rectTransform.localPosition.y + go.velocity, go.image.rectTransform.localPosition.z);
         }
     }
 }
