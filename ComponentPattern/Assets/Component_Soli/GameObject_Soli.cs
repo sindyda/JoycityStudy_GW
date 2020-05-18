@@ -38,6 +38,14 @@ public class InputComponent_Soli
         {
             gameObject.velocity += WALK_ACCEL;
         }
+        else if(Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            gameObject.velocity = 0;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            gameObject.velocity = 0;
+        }
     }
 
     private static int WALK_ACCEL = 1;
