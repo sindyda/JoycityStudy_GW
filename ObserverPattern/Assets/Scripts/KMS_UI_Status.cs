@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class KMS_UI_Status : KMS_ObserverPattern
 {
@@ -14,6 +11,7 @@ public class KMS_UI_Status : KMS_ObserverPattern
     {
         switch (type)
         {
+            // 캐릭터 상태창과 장비 변경때
             case Event.StatusChange:
             case Event.Equipment:
                 Debug.Log("스테이터스 UI를 업데이트 합니다.");

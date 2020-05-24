@@ -11,7 +11,6 @@ namespace ObserverDeafultVersion
         void onNotify(in T value);
     }
 
-
     public interface IObservableDefault<T>
     {
         void AddObserver(IObserverDefault<T> observer);

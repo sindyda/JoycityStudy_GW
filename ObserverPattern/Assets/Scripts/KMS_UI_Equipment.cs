@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class KMS_UI_Equipment : KMS_ObserverPattern
 {
@@ -13,6 +11,7 @@ public class KMS_UI_Equipment : KMS_ObserverPattern
     {
         switch (type)
         {
+            // 장비 관련 부분만 업데이트
             case Event.Equipment:
                 Debug.Log("장비 UI를 업데이트 합니다.");
                 break;

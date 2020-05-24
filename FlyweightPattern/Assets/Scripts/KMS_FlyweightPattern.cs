@@ -1,20 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-
+﻿using UnityEngine;
 
 public class KMS_FlyweightPattern : MonoBehaviour
 {
+    // 16 x 16 짜리 랜덤맵을 만든다고 생각해보고
     const int mapSizeX = 16;
     const int mapSizeY = 16;
 
+    // 각 위치에 존재하는 지형,지물에 대해서 저장 한다고 했을 때
     KMS_FieldObject[,] fieldObjectArray = new KMS_FieldObject[mapSizeX, mapSizeY];
 
-    KMS_FieldObject fieldIsle = new KMS_FieldObject(2, 2, true, "Isle");
-    KMS_FieldObject fieldGuildDepot = new KMS_FieldObject(2, 2, false, "GuildDepot");
-    KMS_FieldObject fieldMonster = new KMS_FieldObject(3, 3, true, "Monster");
-    KMS_FieldObject fieldAircraftMonster = new KMS_FieldObject(3, 3, true, "aircraft");
+    // 동일한 정보는 묶어서 관리하고 다른 부분만 각자 처리하는 식의 패턴
+    // 예제에서는 이동 가능 여부와 이름만 넣었다
+    KMS_FieldObject fieldIsle = new KMS_FieldObject(true, "Isle");
+    KMS_FieldObject fieldGuildDepot = new KMS_FieldObject(false, "GuildDepot");
+    KMS_FieldObject fieldMonster = new KMS_FieldObject(true, "Monster");
+    KMS_FieldObject fieldAircraftMonster = new KMS_FieldObject(true, "aircraft");
 
     private void Start()
     {
@@ -44,6 +44,7 @@ public class KMS_FlyweightPattern : MonoBehaviour
         {
             for (int j = 0; j < mapSizeY; ++j)
             {
+                // 지정된 이름의 오브젝트를 불러 오게 한다
                 GameObject obj = Instantiate(Resources.Load(fieldObjectArray[i, j].objectName, typeof(GameObject))) as GameObject;
                 obj.transform.localPosition = new Vector3(i, j, 0);
             }

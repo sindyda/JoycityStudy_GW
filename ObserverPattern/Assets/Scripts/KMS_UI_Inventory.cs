@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class KMS_UI_Inventory : KMS_ObserverPattern
 {
@@ -13,6 +11,7 @@ public class KMS_UI_Inventory : KMS_ObserverPattern
     {
         switch (type)
         {
+            // 아이템 획득과 장비 변경때
             case Event.Equipment:
             case Event.GetItem:
                 Debug.Log("인벤토리 UI를 업데이트 합니다.");
