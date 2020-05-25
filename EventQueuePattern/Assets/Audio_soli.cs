@@ -71,8 +71,16 @@ public class Audio_soli
 
     public static void startSound(string resource, int channel, int volume)
     {
-        GameObject.Find(resource).GetComponent<AudioSource>().volume = volume / 100f;
-        GameObject.Find(resource).GetComponent<AudioSource>().Play();
+        var r = GameObject.Find(resource);
+        if (r)
+        {
+            var c = r.GetComponent<AudioSource>();
+            if (c)
+            {
+                c.volume = volume / 100f;
+                c.Play();
+            }
+        }
     }
     
     private const int MAX_PENDING = 16;
