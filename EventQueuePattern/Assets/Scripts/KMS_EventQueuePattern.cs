@@ -37,7 +37,7 @@ public class KMS_EventQueuePattern : MonoBehaviour
             kmsAudio.currentVolume += 10;
 
             if (kmsAudio.currentVolume > 100)
-                kmsAudio.currentVolume = 0;
+                kmsAudio.currentVolume = 100;
 
             Debug.Log("Current Volume = " + kmsAudio.currentVolume);
         }
