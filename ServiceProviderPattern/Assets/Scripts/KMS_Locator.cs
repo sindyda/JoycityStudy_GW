@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KMS_ServiceProviderPattern : MonoBehaviour
+public class KMS_Locator
 {
     
 }
