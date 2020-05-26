@@ -31,7 +31,7 @@ public class JJR_NullLogger : JJR_Logger
     }
 }
 
-public class Locator
+public class JJR_Locator
 {
     static JJR_Logger logService = null;
 
@@ -46,7 +46,7 @@ public class Locator
     {
         Debug.Assert(logService != null);
 
-        Locator.logService = logService;
+        JJR_Locator.logService = logService;
     }
 }
 
@@ -56,7 +56,7 @@ public class JJR_Main : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Locator.Provide(new JJR_NormalLogger());
+        JJR_Locator.Provide(new JJR_NormalLogger());
         InvokeRepeating("PrintLog", 0, 1.0f);
     }
 
@@ -65,20 +65,20 @@ public class JJR_Main : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Locator.Provide(new JJR_NormalLogger());
+            JJR_Locator.Provide(new JJR_NormalLogger());
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Locator.Provide(new JJR_ColorLogger());
+            JJR_Locator.Provide(new JJR_ColorLogger());
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            Locator.Provide(new JJR_NullLogger());
+            JJR_Locator.Provide(new JJR_NullLogger());
         }
     }
 
     void PrintLog()
     {
-        Locator.GetLogger().Log(string.Format("Test Log! - {0}", Time.renderedFrameCount));
+        JJR_Locator.GetLogger().Log(string.Format("Test Log! - {0}", Time.renderedFrameCount));
     }
 }
