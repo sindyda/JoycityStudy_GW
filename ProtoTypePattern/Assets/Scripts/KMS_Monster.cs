@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class KMS_Monster
+﻿public class KMS_Monster
 {
     public int health;
     public int speed;

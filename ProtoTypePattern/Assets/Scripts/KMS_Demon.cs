@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class KMS_Demon : KMS_Monster
+﻿public class KMS_Demon : KMS_Monster
 {
     public KMS_Demon(int hp, int spd, int x, int y)
     {
