@@ -10,7 +10,7 @@ public class ServiceProvider_soli : MonoBehaviour
     {
         audio_ = new ConsoleAudio_soli();
         Locator.provide(audio_);
-        //enableAudioLogging();
+        enableAudioLogging();
     }
 
     private void Update()

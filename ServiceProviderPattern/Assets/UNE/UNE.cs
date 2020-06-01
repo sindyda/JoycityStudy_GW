@@ -38,12 +38,12 @@ public class UNE : MonoBehaviour
     public class UNE_Audio
     {
         public virtual void PlaySound(int soundID) { }
-        public virtual void StopSound(int soundID) { }
+        public virtual void StopSound() { }
     }
     public class UNE_NullAudio : UNE_Audio
     {
         public override void PlaySound(int soundID) { /* 아무 것도 하지 않는다. */ }
-        public override void StopSound(int soundID) { /* 아무 것도 하지 않는다. */ }
+        public override void StopSound() { /* 아무 것도 하지 않는다. */ }
     }
     public class UNE_UnityAudio : UNE_Audio
     {
@@ -68,9 +68,9 @@ public class UNE : MonoBehaviour
                 }
             }
         }
-        public override void StopSound(int soundID)
+        public override void StopSound()
         {
-            base.StopSound(soundID);
+            base.StopSound();
             if (_audioSource != null)
             {
                 _audioSource.Stop();
@@ -90,18 +90,18 @@ public class UNE : MonoBehaviour
             Debug.Log("사운드를 출력합니다. " + soundID);
             _wrapped?.PlaySound(soundID);
         }
-        public override void StopSound(int soundID)
+        public override void StopSound()
         {
-            base.StopSound(soundID);
-            Debug.Log("사운드를 중지합니다. " + soundID);
-            _wrapped?.StopSound(soundID);
+            base.StopSound();
+            Debug.Log("사운드를 중지합니다. ");
+            _wrapped?.StopSound();
         }
     }
 
     #endregion Audio
 
-    [SerializeField] AudioSource aSource;
-    [SerializeField] List<AudioClip> aClips;
+    [SerializeField] AudioSource aSource = null;
+    [SerializeField] List<AudioClip> aClips = null;
 
     // Start is called before the first frame update
     void Start()
@@ -139,6 +139,10 @@ public class UNE : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             Locator.Instance?.GetAudio()?.PlaySound(5);
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            Locator.Instance?.GetAudio()?.StopSound();
         }
     }
 }
