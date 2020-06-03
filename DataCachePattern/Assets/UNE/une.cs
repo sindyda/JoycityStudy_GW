@@ -124,7 +124,7 @@ public class une : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             _sa?.Clear();
-            _sa = new SortingArray(_randomIndex);
+            _sa = new SortingArray(1000);// _randomIndex);
             _saTimes.Add(_sa.Calculate());
 
             _bBlock = false;

@@ -32,9 +32,9 @@ public class ComponentListData
 
 public class KMS_DataCache : MonoBehaviour
 {
-    // 조건 1 2개의 리스트에서 Add를 일괄적으로 진행 ( 메모리 정렬 예상 )
-    // 조건 3 2개의 리스트에서 Add를 따로따로 진행 ( 메모라 파편화 예상 ) 
-    // 조건 2 2개의 리스트로 저장 후 로드
+    // 조건 1 2개의 리스트에서 Add를 일괄적으로 진행 ( 메모리 파편화 예상 )
+    // 조건 2 2개의 리스트에서 Add를 따로따로 진행 ( 메모리 정렬 예상 ) 이게 더 빠를것으로 예상 1번 보다는...
+    // 조건 3 2개의 리스트로 저장 후 로드
     // 조건 4 2개의 배열로 저장 후 로드
     
     List<ComponentListData> listData1 = new List<ComponentListData>();

@@ -10,6 +10,11 @@ namespace JeonJaram
         {
 
         }
+
+        public void Update1()
+        {
+            Update();
+        }
     }
     public class InternalGameEntity
     {
@@ -19,13 +24,10 @@ namespace JeonJaram
         }
         public void Update()
         {
-            if (component != null)
-            {
                 component.Update();
-            }
         }
 
-        Component component = new Component();
+        public Component component = new Component();
     }
 
     public class ExternalGameEntity
@@ -36,10 +38,7 @@ namespace JeonJaram
         }
         public void Update()
         {
-            if (component != null)
-            {
                 component.Update();
-            }
         }
 
         public void SetComponent(Component component)
@@ -55,12 +54,14 @@ namespace JeonJaram
         List<InternalGameEntity> internalGameEntities = new List<InternalGameEntity>();
         List<ExternalGameEntity> externalGameEntities = new List<ExternalGameEntity>();
         Component[] components = new Component[MAX_ENTITY];
+        Component[] components1 = new Component[MAX_ENTITY];
         // Start is called before the first frame update
         void Start()
         {
             for (int i = 0; i < MAX_ENTITY; ++i)
             {
                 internalGameEntities.Add(new InternalGameEntity());
+                components1[i] = internalGameEntities[i].component;
             }
 
             for (int i = 0; i < MAX_ENTITY; ++i)
@@ -102,10 +103,18 @@ namespace JeonJaram
                 befTime = Time.realtimeSinceStartup;
                 for (int i = 0; i < components.Length; ++i)
                 {
-                    components[i].Update();
+                    components[i].Update1();
                 }
 
                 Debug.Log(string.Format("direct access time : {0}", Time.realtimeSinceStartup - befTime));
+
+                befTime = Time.realtimeSinceStartup;
+                for (int i = 0; i < components1.Length; ++i)
+                {
+                    components1[i].Update1();
+                }
+
+                Debug.Log(string.Format("components1 access time : {0}", Time.realtimeSinceStartup - befTime));
 
             }
         }
