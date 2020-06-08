@@ -5,9 +5,7 @@ using UnityEngine;
 public class KMS_Particle : KMS_Object
 {
     float lifeTime = 0;
-    float time = 0;
 
-    
     public void Init(float playTime)
     {
         lifeTime = playTime;
@@ -23,7 +21,7 @@ public class KMS_Particle : KMS_Object
             if( lifeTime < 0.0f )
             {
                 inUse = false;
-                this.gameObject.SetActive(false);
+                gameObject.SetActive(false);
             }
         }
     }
