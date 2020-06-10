@@ -23,6 +23,7 @@ public class Particle_soli : MonoBehaviour
 
     public void init(float x_, float y_, float xVel_, float yVel_, float lifeTime_)
     {
+        gameObject.SetActive(true);
         x = x_;
         y = y_;
         xVel = xVel_;
@@ -40,6 +41,9 @@ public class Particle_soli : MonoBehaviour
         y += yVel;
 
         transform.localPosition = new Vector3(x, y, 0);
+
+        if (!inUse())
+            transform.gameObject.SetActive(false);
     }
 
     public bool inUse()

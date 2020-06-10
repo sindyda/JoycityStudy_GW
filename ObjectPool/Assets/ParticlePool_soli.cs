@@ -27,9 +27,14 @@ public class ParticlePool_soli : MonoBehaviour
     {
         for (int i = 0; i < POOL_SIZE; ++i)
         {
-            if (particles[i] == null || (particles[i] != null && !particles[i].inUse()))
+            if (particles[i] == null)
             {
                 particles[i] = Instantiate(particle, Vector3.zero, Quaternion.identity);
+                particles[i].init(x_, y_, xVel_, yVel_, lifeTime_);
+                return;
+            }
+            else if((particles[i] != null && !particles[i].inUse()))
+            {
                 particles[i].init(x_, y_, xVel_, yVel_, lifeTime_);
                 return;
             }
