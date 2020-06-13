@@ -217,10 +217,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690198, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: findColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690198, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: findColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690198, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: findColor.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6247245506350690199, guid: 5df5575abc7bd1d4184e0ecc68b33035,
         type: 3}
       propertyPath: m_Name
       value: Cube (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690199, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5df5575abc7bd1d4184e0ecc68b33035, type: 3}
@@ -286,10 +306,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690198, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: findColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690198, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: findColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690198, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: findColor.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6247245506350690199, guid: 5df5575abc7bd1d4184e0ecc68b33035,
         type: 3}
       propertyPath: m_Name
       value: Cube (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690199, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5df5575abc7bd1d4184e0ecc68b33035, type: 3}
@@ -355,10 +395,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690198, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: findColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690198, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: findColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690198, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: findColor.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6247245506350690199, guid: 5df5575abc7bd1d4184e0ecc68b33035,
         type: 3}
       propertyPath: m_Name
       value: Cube
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690199, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5df5575abc7bd1d4184e0ecc68b33035, type: 3}
@@ -424,10 +484,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690198, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: findColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690198, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: findColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690198, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: findColor.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6247245506350690199, guid: 5df5575abc7bd1d4184e0ecc68b33035,
         type: 3}
       propertyPath: m_Name
       value: Cube (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690199, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5df5575abc7bd1d4184e0ecc68b33035, type: 3}
@@ -562,10 +642,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690198, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: findColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690198, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: findColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690198, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: findColor.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6247245506350690199, guid: 5df5575abc7bd1d4184e0ecc68b33035,
         type: 3}
       propertyPath: m_Name
       value: Cube (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690199, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5df5575abc7bd1d4184e0ecc68b33035, type: 3}
@@ -631,10 +731,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690198, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: findColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690198, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: findColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690198, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: findColor.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6247245506350690199, guid: 5df5575abc7bd1d4184e0ecc68b33035,
         type: 3}
       propertyPath: m_Name
       value: Cube (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690199, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5df5575abc7bd1d4184e0ecc68b33035, type: 3}
@@ -782,10 +902,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690198, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: findColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690198, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: findColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690198, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: findColor.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6247245506350690199, guid: 5df5575abc7bd1d4184e0ecc68b33035,
         type: 3}
       propertyPath: m_Name
       value: Cube (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690199, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5df5575abc7bd1d4184e0ecc68b33035, type: 3}
@@ -851,10 +991,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690198, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: findColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690198, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: findColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690198, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: findColor.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6247245506350690199, guid: 5df5575abc7bd1d4184e0ecc68b33035,
         type: 3}
       propertyPath: m_Name
       value: Cube (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247245506350690199, guid: 5df5575abc7bd1d4184e0ecc68b33035,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5df5575abc7bd1d4184e0ecc68b33035, type: 3}

@@ -8,6 +8,7 @@ public class KMS_Grid
     public const int CELL_SIZE = 2;
     public const float ATTACK_DISTANCE = 1.5f;
 
+    // 모든 Unit은 Add를 통해 등록이 되어야 함
     private KMS_Unit[,] cells = new KMS_Unit[NUM_CELL, NUM_CELL];
 
     public void Add(KMS_Unit unit)
@@ -25,15 +26,13 @@ public class KMS_Grid
         }
     }
 
-    public void HandleMelee()
+    public void HandleMelee(float unitX, float unitY)
     {
-        for (int x = 0; x < NUM_CELL; ++x)
-        {
-            for (int y = 0; y < NUM_CELL; ++y)
-            {
-                HandleCell(x, y);
-            }
-        }
+        int cellX = (int)(unitX / CELL_SIZE);
+        int cellY = (int)(unitY / CELL_SIZE);
+
+        // 내 유닛이 있는 곳만 검색
+        HandleCell(cellX, cellY);
     }
 
     void HandleCell(int x, int y)
@@ -62,6 +61,7 @@ public class KMS_Grid
     {
         if (Vector3.Distance(attackUnit.transform.localPosition, defenceUnit.transform.localPosition) <= ATTACK_DISTANCE)
         {
+            // 충돌 성공 시 로그 출력
             Debug.Log(defenceUnit.gameObject.name + "&" + attackUnit.gameObject.name + " Hit");
         }
     }
@@ -119,7 +119,25 @@ public class KMS_Grid
 
     float Distance(KMS_Unit unit, KMS_Unit other)
     {
-        // 거리 계산
+        // 거리 계산, 대상 오브젝트들은 컬러를 변경해서 눈에 잘 보이게 
+        unit.UpdateFindColor();
+        other.UpdateFindColor();
         return Vector3.Distance(unit.transform.localPosition, other.transform.localPosition);
+    }
+
+    public void ResetColor()
+    {
+        for (int x = 0; x < NUM_CELL; ++x)
+        {
+            for (int y = 0; y < NUM_CELL; ++y)
+            {
+                KMS_Unit unit = cells[x, y];
+                while (unit != null )
+                {
+                    unit.UpdateColor();
+                    unit = unit.next;
+                }
+            }
+        }
     }
 }
