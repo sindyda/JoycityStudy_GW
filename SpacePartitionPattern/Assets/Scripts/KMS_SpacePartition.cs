@@ -42,5 +42,4 @@ public class KMS_SpacePartition : MonoBehaviour
             unit.Move(0, (Time.deltaTime * 10.0f));
         }
     }
-
 }
