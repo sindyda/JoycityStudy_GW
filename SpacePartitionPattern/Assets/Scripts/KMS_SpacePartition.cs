@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class KMS_SpacePartition : MonoBehaviour
 {
@@ -14,12 +12,18 @@ public class KMS_SpacePartition : MonoBehaviour
 
     private void Update()
     {
-        // 공격 키
+        // 충돌 체크
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            gridMap.HandleMelee();
+            KMS_Unit unit = obj.GetComponent<KMS_Unit>();
+            gridMap.HandleMelee(unit.x, unit.y);
+        }
+        if( Input.GetKeyUp(KeyCode.Space))
+        {
+            gridMap.ResetColor();
         }
 
+        // 방향키로 메인 Object 이동
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             var unit = obj.GetComponent<KMS_Unit>();
@@ -42,5 +46,4 @@ public class KMS_SpacePartition : MonoBehaviour
             unit.Move(0, (Time.deltaTime * 10.0f));
         }
     }
-
 }
