@@ -47,7 +47,7 @@ public class Grid_soli
             unit.next_.prev_ = unit.prev_;
 
         if (cells_[oldCellX, oldCellY] == unit)
-            cells_[oldCellY, oldCellY] = unit.next_;
+            cells_[oldCellX, oldCellY] = unit.next_;
 
         add(unit);
     }
@@ -61,12 +61,12 @@ public class Grid_soli
 
     public void handleCell(Unit_soli unit)
     {
-        while(unit != null)
+        while (unit != null)
         {
             Unit_soli other = unit.next_;
             while (other != null)
             {
-                if(unit.x_ == other.x_ && unit.y_ == other.y_)
+                if ((int)unit.x_ == (int)other.x_ && (int)unit.y_ == (int)other.y_)
                 {
                     handleAttack(unit, other);
                 }

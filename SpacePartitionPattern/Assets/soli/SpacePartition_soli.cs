@@ -12,7 +12,12 @@ public class SpacePartition_soli : MonoBehaviour
 
         System.Random random = new System.Random();
         for (int i = 0; i < NUM_ENEMY; ++i)
-            enemyUnit_[i] = Instantiate(basicUnit, new Vector3(random.Next(6), random.Next(6), 0), Quaternion.identity);
+        {
+            var x = random.Next(6);
+            var y = random.Next(6);
+            enemyUnit_[i] = Instantiate(basicUnit, new Vector3(x, y, 0), Quaternion.identity);
+            enemyUnit_[i].init(grid_, x, y);
+        }
 
     }
 
@@ -42,6 +47,8 @@ public class SpacePartition_soli : MonoBehaviour
 
             myUnit_.move(myUnit_.transform.localPosition.x, myUnit_.transform.localPosition.y);
         }
+
+        grid_.handleMedee();
     }
 
     Grid_soli grid_;
